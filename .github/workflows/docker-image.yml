@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+    - uses: actions/checkout@v4
+    
+    - name: Docker Compose files
+      run: docker compose -f docker-compose-quickstart.yml up -d
+    
+    - name: Docker List Images
+      run: docker images
