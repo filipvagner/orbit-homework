@@ -67,3 +67,19 @@ jobs:
           az bicep version
           az deployment sub create --location "East US 2" --template-file "/home/runner/work/orbit-homework/orbit-homework/infra/bicep/main.bicep"
 
+  terraform-plan:
+    name: 'Terraform Plan'
+    runs-on: ubuntu-latest
+    needs: [bicep-plan, bicep-deployment]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 'Terraform Install'
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.9.0"
+
+    - name: Terraform Version
+      run: terraform version
