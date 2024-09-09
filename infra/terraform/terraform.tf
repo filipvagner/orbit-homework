@@ -23,3 +23,9 @@ terraform {
 
   required_version = "1.9.0"
 }
+
+provider "azurerm" {
+  skip_provider_registration = true
+
+  features {}
+}
