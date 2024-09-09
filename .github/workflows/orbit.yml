@@ -15,14 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Azure Subscription
-      uses: azure/cli@v2
-      with:
-        azcliversion: latest
-        inlineScript: |
-          az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_CLIENT_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
-          az version
-    
     - name: 'Terraform Install'
       uses: hashicorp/setup-terraform@v3
       with:
@@ -38,7 +30,6 @@ jobs:
         export ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }}
         export ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }}
         export ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
-        pwd
         terraform init \
         -upgrade \
         -backend-config="resource_group_name=rg-orbittfstate-tst-use2-001" \
@@ -49,6 +40,10 @@ jobs:
     - name: Terraform Plan
       run: |
         cd infra/terraform
+        export ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}
+        export ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }}
+        export ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }}
+        export ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
         terraform plan \
         -out=tfplan
         
