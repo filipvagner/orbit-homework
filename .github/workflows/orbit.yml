@@ -26,6 +26,6 @@ jobs:
       uses: azure/cli@v2
       with:
         azcliversion: latest
-        working-directory: ./infra
         inlineScript: |
-          pwd
+          cd /home/runner/work/orbit-homework/orbit-homework/infra/bicep
+          az deployment sub create --location "East US 2" --template-file ".\main.bicep" --what-if
