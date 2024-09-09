@@ -46,4 +46,11 @@ jobs:
         export ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
         terraform plan \
         -out=tfplan
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist-without-markdown
+        path: |
+          infra/terraform/tfplan
         
