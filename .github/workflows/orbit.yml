@@ -31,6 +31,7 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
+          export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
           az bicep install
           az bicep version
           
