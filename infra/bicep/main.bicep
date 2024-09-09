@@ -40,5 +40,15 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.13.2' = {
       ]
 
     }
+    networkAcls: {
+      bypass: 'AzureServices'
+      defaultAction: 'Deny'
+      ipRules: [
+        {
+          action: 'Allow'
+          value: '80.188.53.234'
+        }
+      ]
+    }
   }
 }
