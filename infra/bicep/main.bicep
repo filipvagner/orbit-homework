@@ -24,6 +24,10 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.13.2' = {
       Environment: 'Test'
     }
     publicNetworkAccess: 'Enabled'
+    networkAcls: {
+      bypass: 'AzureServices'
+      defaultAction: 'Allow'
+    }
     allowBlobPublicAccess: true
     blobServices: {
       automaticSnapshotPolicyEnabled: true
