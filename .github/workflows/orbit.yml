@@ -31,5 +31,6 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
+          az bicep install
           az bicep version
           
