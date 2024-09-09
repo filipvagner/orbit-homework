@@ -57,7 +57,7 @@ jobs:
         inlineScript: |
           az account show
 
-    - name: Bicep Plan
+    - name: Bicep Deloyment
       uses: azure/cli@v2
       with:
         azcliversion: latest
