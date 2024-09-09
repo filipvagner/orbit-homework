@@ -27,5 +27,4 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          cd /home/runner/work/orbit-homework/orbit-homework/infra/bicep
-          az deployment sub create --location "East US 2" --template-file ".\main.bicep" --what-if
+          az deployment sub create --location "East US 2" --template-file "/home/runner/work/orbit-homework/orbit-homework/infra/bicep/main.bicep" --what-if
