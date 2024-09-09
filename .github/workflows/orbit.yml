@@ -15,9 +15,17 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Azure CLI script
+    - name: Azure Subscription
       uses: azure/cli@v2
       with:
         azcliversion: latest
         inlineScript: |
           az account show
+
+    - name: Bicep Plan
+      uses: azure/cli@v2
+      with:
+        azcliversion: latest
+        working-directory: ./infra
+        inlineScript: |
+          pwd
