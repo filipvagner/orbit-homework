@@ -37,4 +37,10 @@ jobs:
         -backend-config="storage_account_name=storbittfstate001" \
         -backend-config="container_name=orbit-tfstate" \
         -backend-config="key=orbit.tfstate"
+
+    - name: Terraform Plan
+      run: |
+        cd infra/terraform
+        terraform plan \
+        -out=tfplan
         
