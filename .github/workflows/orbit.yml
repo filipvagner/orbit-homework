@@ -83,3 +83,17 @@ jobs:
 
     - name: Terraform Version
       run: terraform version
+
+    - name: Terraform Init
+      run: |
+        cd infra/terraform
+        export ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}
+        export ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }}
+        export ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }}
+        export ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
+        terraform init \
+        -upgrade \
+        -backend-config=storage_account_name=storbittfstate001 \
+        -backend-config=container_name=orbit-tfstate \
+        -backend-config=key=orbit.tfstate \
+        -backend-config=resource_group_name=rg-orbittfstate-tst-use2-001 \
