@@ -1,6 +1,6 @@
 terraform {
 
-  backend "local" {}
+  backend "azurerm" {}
 
   required_providers {
     azurerm = {
