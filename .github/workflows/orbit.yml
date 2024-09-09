@@ -39,6 +39,7 @@ jobs:
   bicep-deployment:
     name: 'Bicep Deployment'
     runs-on: ubuntu-latest
+    needs: bicep-plan
     environment: 'orbit-homework'
 
     steps:
