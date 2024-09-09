@@ -31,5 +31,5 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          bicep --version
+          az bicep version
           
