@@ -23,6 +23,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.13.2' = {
       Importance: 'High'
       Environment: 'Test'
     }
+    publicNetworkAccess: 'Enabled'
     allowBlobPublicAccess: true
     blobServices: {
       automaticSnapshotPolicyEnabled: true
