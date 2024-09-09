@@ -11,6 +11,9 @@ module modTfStateRg 'br/public:avm/res/resources/resource-group:0.4.0' = {
 module storageAccount 'br/public:avm/res/storage/storage-account:0.13.2' = {
   scope: resourceGroup('rg-orbittfstate-tst-use2-001') // If referenced by a module name, then is not listed in change output
   name: 'storageAccountDeployment'
+  dependsOn: [
+    modTfStateRg
+  ]
   params: {
     name: 'storbittfstate001'
     location: deployment().location
