@@ -91,14 +91,13 @@ jobs:
         export ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }}
         export ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }}
         export ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
-        pwd
         terraform init \
         -upgrade \
         -backend-config="resource_group_name=rg-orbittfstate-tst-use2-001" \
         -backend-config="storage_account_name=storbittfstate001" \
         -backend-config="container_name=orbit-tfstate" \
         -backend-config="key=orbit.tfstate"
-		
+
     - name: Terraform Plan
       run: |
         cd infra/terraform
@@ -108,7 +107,7 @@ jobs:
         export ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
         terraform plan \
         -out=tfplan
-		
+        
     - name: Save Terraform Plan
       uses: actions/upload-artifact@v4
       with:
