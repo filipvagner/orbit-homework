@@ -34,4 +34,5 @@ jobs:
           export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
           az bicep install
           az bicep version
+          az deployment sub create --location "East US 2" --template-file "/home/runner/work/orbit-homework/orbit-homework/infra/bicep/main.bicep" --what-if
           
