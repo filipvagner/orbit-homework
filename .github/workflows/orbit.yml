@@ -7,10 +7,14 @@ on:
     branches: [ "main" ]
 
 jobs:
-  authenticate:
+  bicep-deployment:
+    name: 'Bicep Deployment'
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
     - uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -27,4 +31,5 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az deployment sub create --location "East US 2" --template-file "/home/runner/work/orbit-homework/orbit-homework/infra/bicep/main.bicep" --what-if
+          bicep --version
+          
