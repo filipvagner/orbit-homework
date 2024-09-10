@@ -40,7 +40,6 @@ jobs:
     name: 'Bicep Deployment'
     runs-on: ubuntu-latest
     needs: bicep-plan
-    environment: 'orbit-homework'
 
     steps:
     - name: Checkout repository
@@ -118,7 +117,6 @@ jobs:
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
     needs: terraform-plan
-    environment: 'orbit-homework'
 
     steps:
     - name: Checkout repository
@@ -200,11 +198,8 @@ jobs:
         pwd
         ls
         bash remove-lines.sh
+        cat ./azurek8s
         export KUBECONFIG=./azurek8s
-
-    - name: Kubernetes Get Nodes
-      run: |
-        kubectl get nodes
     
     - name: Docker Compose files
       run: docker compose -f docker-compose-quickstart.yml up -d
