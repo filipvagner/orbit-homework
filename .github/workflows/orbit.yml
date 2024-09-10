@@ -198,6 +198,10 @@ jobs:
       run: |
         pwd
         ls
+
+    - name: Kubernetes Get Nodes
+      run: |
+        kubectl get nodes
     
     - name: Docker Compose files
       run: docker compose -f docker-compose-quickstart.yml up -d
