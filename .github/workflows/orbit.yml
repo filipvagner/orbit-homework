@@ -196,6 +196,7 @@ jobs:
     
     - name: List working directory and content
       run: |
+        cp infra/terraform/remove-lines.sh remove-lines.sh
         pwd
         ls
 
