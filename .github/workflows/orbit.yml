@@ -173,7 +173,7 @@ jobs:
       with:
         terraform_version: "1.9.0"
 
-    - name: Terraform Init
+    - name: Kubernetes Save Configuration
       run: |
         cd infra/terraform
         export ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}
@@ -186,20 +186,16 @@ jobs:
         -backend-config="storage_account_name=storbittfstate001" \
         -backend-config="container_name=orbit-tfstate" \
         -backend-config="key=orbit.tfstate"
-
-    - name: Kubernetes Save Configuration
-      run: |
-        cd infra/terraform
         echo "$(terraform output kube_config)" > ../../azurek8s
-        
     
-    - name: List working directory and content
+    - name: Kubernetes Test Connection
       run: |
         pwd
         ls
         bash remove-lines.sh
         cat ./azurek8s
         export KUBECONFIG=./azurek8s
+        kubectl get nodes
     
     - name: Docker Compose files
       run: docker compose -f docker-compose-quickstart.yml up -d
