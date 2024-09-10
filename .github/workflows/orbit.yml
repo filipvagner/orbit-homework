@@ -152,7 +152,7 @@ jobs:
         name: tfplan
         path: infra/terraform
 
-    - name: Terraform Plan
+    - name: Terraform Apply
       run: |
         cd infra/terraform
         export ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}
