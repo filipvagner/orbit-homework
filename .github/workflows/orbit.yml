@@ -191,13 +191,12 @@ jobs:
 
     - name: Kubernetes Save Configuration
       run: |
-        echo "$(terraform output kube_config)" > ./azurek8s
+        cd infra/terraform
+        echo "$(terraform output kube_config)" > ../../azurek8s
         
     
     - name: List working directory and content
       run: |
-        cp infra/terraform/remove-lines.sh remove-lines.sh
-        cp infra/terraform/azurek8s azurek8s
         pwd
         ls
         bash remove-lines.sh
