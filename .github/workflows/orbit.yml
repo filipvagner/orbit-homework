@@ -192,8 +192,12 @@ jobs:
     - name: Kubernetes Save Configuration
       run: |
         echo "$(terraform output kube_config)" > ./azurek8s
-        ./remove-lines.sh
         export KUBECONFIG=./azurek8s
+    
+    - name: List working directory and content
+      run: |
+        pwd
+        ls
     
     - name: Docker Compose files
       run: docker compose -f docker-compose-quickstart.yml up -d
@@ -247,11 +251,13 @@ jobs:
 
     - name: Kubernetes Save Configuration
       run: |
+        echo "$(terraform output kube_config)" > ./azurek8s
+        export KUBECONFIG=./azurek8s
+    
+    - name: List working directory and content
+      run: |
         pwd
         ls
-        echo "$(terraform output kube_config)" > ./azurek8s
-        ./remove-lines.sh
-        export KUBECONFIG=./azurek8s
     
     - name: Tag and Push Docker Image
       run: |
