@@ -193,7 +193,6 @@ jobs:
         pwd
         ls
         bash remove-lines.sh
-        cat ./azurek8s
         export KUBECONFIG=./azurek8s
         kubectl get nodes
     
@@ -233,7 +232,7 @@ jobs:
       with:
         terraform_version: "1.9.0"
 
-    - name: Terraform Init
+    - name: Kubernetes Save Configuration
       run: |
         cd infra/terraform
         export ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}
@@ -246,17 +245,13 @@ jobs:
         -backend-config="storage_account_name=storbittfstate001" \
         -backend-config="container_name=orbit-tfstate" \
         -backend-config="key=orbit.tfstate"
+        echo "$(terraform output kube_config)" > ../../azurek8s
 
-    - name: Kubernetes Save Configuration
-      run: |
-        echo "$(terraform output kube_config)" > ./azurek8s
-        export KUBECONFIG=./azurek8s
-    
-    - name: List working directory and content
+    - name: Kubernetes Deploy Application
       run: |
         pwd
         ls
-    
-    - name: Tag and Push Docker Image
-      run: |
-        kubectl apply -f aks-store-quickstart.yaml "..\..\aks-store-quickstart.yaml"
+        bash remove-lines.sh
+        export KUBECONFIG=./azurek8s
+        kubectl get nodes
+        kubectl apply -f aks-store-quickstart.yaml
