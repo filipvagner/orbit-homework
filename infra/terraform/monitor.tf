@@ -51,7 +51,7 @@ resource "azurerm_monitor_workspace" "amw" {
 
 #region Data Collection Rule
 resource "azurerm_monitor_data_collection_rule" "dcr-ci" {
-  name                = "dcr-obitaks-tst-use2-001"
+  name                = "dcr-orbitaks-tst-use2-001"
   resource_group_name = azurerm_resource_group.rg["rg-orbit-tst-use2-001"].name
   location            = azurerm_resource_group.rg["rg-orbit-tst-use2-001"].location
   description         = "DCR for Azure Monitor Container Insights"
