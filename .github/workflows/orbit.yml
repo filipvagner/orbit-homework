@@ -247,6 +247,8 @@ jobs:
 
     - name: Kubernetes Save Configuration
       run: |
+        pwd
+        ls
         echo "$(terraform output kube_config)" > ./azurek8s
         ./remove-lines.sh
         export KUBECONFIG=./azurek8s
