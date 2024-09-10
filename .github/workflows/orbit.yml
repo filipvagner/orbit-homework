@@ -199,6 +199,7 @@ jobs:
         cp infra/terraform/remove-lines.sh remove-lines.sh
         pwd
         ls
+        bash remove-lines.sh
 
     - name: Kubernetes Get Nodes
       run: |
